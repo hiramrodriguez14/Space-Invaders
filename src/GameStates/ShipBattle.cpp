@@ -49,10 +49,14 @@ void ShipBattle::update() {
 
     // State switching logic for when the player dies
     if (this->player->health <= 0) {
-        
+
+           
+        EnemyManager::cleanUp();
         this->player->health = 100;
         this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
+        SoundManager::stopSong("ORT Xibalba");
+        SoundManager::stopSong("Galactica Supercell ORT");
         if(EnemyManager::getSpawningBossType() != ""){
             SoundManager::stopSong(EnemyManager::getSpawningBossType());
         }
@@ -63,6 +67,8 @@ void ShipBattle::update() {
                 scoreFile.close();
             }
             this->setFinished(true);
+            this->playerScore = 0;
+            this->killspreeTimer = 0;
     }
 }
 

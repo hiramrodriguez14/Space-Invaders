@@ -14,6 +14,7 @@ void ofApp::setup(){
     */
 
     SoundManager::loadSong("intro", "Sounds/Great_Void_Sea_Battle.mp3");
+    SoundManager::loadSong("over", "Sounds/GameOverSound.mp3");
     SoundManager::loadSong("battle", "Sounds/Clashing_Waves.mp3");
     SoundManager::loadSong("shipDestroyed", "Sounds/shipExplosion.wav");
     SoundManager::loadSong("ORT Xibalba", "Sounds/ORT_Xibalba.mp3");
@@ -53,7 +54,7 @@ void ofApp::update(){
         }
 
         else if(currentState->getNextState() == "GameOverState") {
-            SoundManager::playSong("intro", true);
+            SoundManager::playSong("over", true);
             currentState = gameOver;
         }
         currentState->reset();
