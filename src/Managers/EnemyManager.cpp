@@ -325,6 +325,7 @@ void EnemyManager::cleanUp() {
     bossHasDied();
     bossIsSpawning = false;
     bossIsActive = false;
+    bossWarningTimer = 0;
 }
 
 
