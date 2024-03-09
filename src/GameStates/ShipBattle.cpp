@@ -50,6 +50,7 @@ void ShipBattle::update() {
     // State switching logic for when the player dies
     if (this->player->health <= 0) {
         
+        this->player->health = 100;
         this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
         if(EnemyManager::getSpawningBossType() != ""){
