@@ -47,18 +47,19 @@ void ShipBattle::update() {
         updateBullets();
     }
 
-    // State switching logic for when the player dies
+    // State switching logic for when the player dies <-----------------
     if (this->player->health <= 0) {
 
            
-        EnemyManager::cleanUp();
+        EnemyManager::cleanUp(); //esto borra los enemigos y los bosses
         this->player->health = 100;
         this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
         SoundManager::stopSong("ORT Xibalba");
-        SoundManager::stopSong("Galactica Supercell ORT");
+        SoundManager::stopSong("Galactica Supercell ORT"); //Esto lo hice yo para parar la msuica de los bosses
         if(EnemyManager::getSpawningBossType() != ""){
-            SoundManager::stopSong(EnemyManager::getSpawningBossType());
+            SoundManager::stopSong(EnemyManager::getSpawningBossType());  //<---- maybe hay un bug con esto se supone que
+                                                                          //pare la musica de los boss y no lo hace, por eso hice lo de arriba
         }
             // Write the current score to a file
             ofstream scoreFile("currentScore.txt");
@@ -67,8 +68,8 @@ void ShipBattle::update() {
                 scoreFile.close();
             }
             this->setFinished(true);
-            this->playerScore = 0;
-            this->killspreeTimer = 0;
+            this->playerScore = 0;  // despues que enseña en la pantalla el score vuelve a ser 0
+            this->killspreeTimer = 0; //tambien esto
     }
 }
 
