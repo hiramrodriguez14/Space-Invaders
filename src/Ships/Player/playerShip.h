@@ -32,6 +32,7 @@ class Player{
     public: 
 
        // === Public attributes ===
+        int lives = 3;
         int health;                         // Needed in public for ease of use and direct access
         int shipOrientation;                // Orientation of the ship
         unordered_map<int, bool> keyMap;    // A Map is used to handle the keys pressed

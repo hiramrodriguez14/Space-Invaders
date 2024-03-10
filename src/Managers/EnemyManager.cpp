@@ -286,12 +286,12 @@ void EnemyManager::spawnBoss(const string& bossType) {
     if (bossType == "ORT Xibalba") {
         ortSeen = true;   
         auto boss = make_unique<ORT>(0, ofGetHeight()/2 -50, "ORT Xibalba");
-        bossList.push_back(move(boss));
+        bossList.push_back(std::move(boss));
     } 
     else if (bossType == "Galactica Supercell ORT") {
         ufoSeen = true;
         auto boss = make_unique<UFO>(ofGetWidth()/2, 20, "Galactica Supercell ORT");
-        bossList.push_back(move(boss));
+        bossList.push_back(std::move(boss));
     }
     // Reset the spawn timer and clear boss spawning flags
     enemySpawnTimer = 0;
@@ -322,7 +322,7 @@ void EnemyManager::cleanUp() {
     bossList.clear();
     ufoSeen = false;
     ortSeen = false;
-    bossHasDied();
+    
 }
 
 

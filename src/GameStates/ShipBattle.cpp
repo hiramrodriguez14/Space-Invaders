@@ -48,9 +48,14 @@ void ShipBattle::update() {
     }
 
     // State switching logic for when the player dies
-    if (this->player->health <= 0) {
+    if(this->player->lives!=0 && this->player->health <= 0 ){
+        this->player->health = 100;
+        this->player->lives= this->player->lives-1;
+    }
+    if(this->player->lives==0){
         
         this->player->health = 100;
+        this->player->lives = 3;
         this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
         if(EnemyManager::getSpawningBossType() != ""){
@@ -63,6 +68,8 @@ void ShipBattle::update() {
                 scoreFile.close();
             }
             this->setFinished(true);
+            this->playerScore = 0;  // despues que enseña en la pantalla el score vuelve a ser 0
+            this->killspreeTimer = 0; //tambien esto
     }
 }
 

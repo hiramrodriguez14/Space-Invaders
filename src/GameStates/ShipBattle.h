@@ -31,6 +31,7 @@ private:
     ofTrueTypeFont font;          // Font for text rendering
     ofTrueTypeFont indicatorFont; // Font for text rendering in regards 
     ofImage backgroundImage;       // Background image of the game
+    
 
 public:   
     // Public members accessible outside the class
