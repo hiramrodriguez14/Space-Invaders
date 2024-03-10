@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "Button.h"
 #include "SoundManager.h"
+#include "EnemyManager.h"
 
 class State{ 
 

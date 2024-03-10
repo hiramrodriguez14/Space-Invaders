@@ -12,6 +12,7 @@ ShipBattle::ShipBattle() {
     font.load("Fonts/Orbitron.ttf", 20, true);
     indicatorFont.load("Fonts/Orbitron.ttf", 10, true);
     backgroundImage.load("Menu_Images/BattleArea.jpg");
+     heart.load("ShipModels/heart.png");
 
 }
 
@@ -47,12 +48,15 @@ void ShipBattle::update() {
         updateBullets();
     }
 
-    // State switching logic for when the player dies <-----------------
-    if (this->player->health <= 0) {
-
-           
-        EnemyManager::cleanUp(); //esto borra los enemigos y los bosses
+    // State switching logic for when the player dies
+    if(this->player->lives!=0 && this->player->health <= 0 ){
         this->player->health = 100;
+        this->player->lives= this->player->lives-1;
+    }
+    if(this->player->lives==0){
+        
+        this->player->health = 100;
+        this->player->lives = 3;
         this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
         SoundManager::stopSong("ORT Xibalba");
@@ -106,6 +110,16 @@ void ShipBattle::draw() {
         ofNoFill();
         ofDrawRectangle(ofGetWidth() - 150, 30, 50, 50);
         ofFill();
+
+    if(this->player->lives>=1){
+        heart.draw(ofGetWindowWidth()/2-590, ofGetWindowHeight()/2-275, 25, 25);
+    }
+     if(this->player->lives>=2){
+        heart.draw(ofGetWindowWidth()/2-560, ofGetWindowHeight()/2-275, 25, 25);
+    }
+     if(this->player->lives==3){
+        heart.draw(ofGetWindowWidth()/2-530, ofGetWindowHeight()/2-275, 25, 25);
+    }
     
 }
 

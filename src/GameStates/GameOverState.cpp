@@ -13,6 +13,7 @@ GameOverState::GameOverState(){
 
 void GameOverState::update() {
     if(buttons[0]->wasPressed()){           // This is the "Play" button
+        EnemyManager::cleanUp();
         SoundManager::stopSong("over");
         this->setNextState("BattleState");
         this->setFinished(true);
