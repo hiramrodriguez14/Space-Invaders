@@ -86,6 +86,11 @@ void Player::addPressedKey(int key) {
 
     keyMap[key] = true;
     isMoving = true; // Set the movement flag
+    if (key==OF_KEY_SHIFT)//Estoy es para ver si el boton apretado fue shift y subir la velocidad
+    {
+        maxSpeed=10;
+    }
+    
 }
 
 void Player::processPressedKeys() {
@@ -106,6 +111,11 @@ void Player::processPressedKeys() {
 void Player::removePressedKey(int key) {
     key = tolower(key);
     keyMap[key] = false;
+    if (key==OF_KEY_SHIFT)//aqui es para si paras de apretar shift la velocidad vuelve a su valor original
+    {
+        maxSpeed=5;
+    }
+    
 }
 
 void Player::movement(char keyPressed) {
