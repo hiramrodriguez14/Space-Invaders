@@ -9,6 +9,7 @@
 
     bool EnemyManager::ufoSeen = false;
     bool EnemyManager::ortSeen = false;
+    bool EnemyManager::stationSeen = false;
 
     string EnemyManager::whichBoss = "";
     int EnemyManager::bossWarningTimer = 0;
@@ -233,15 +234,21 @@ void EnemyManager::spawnEnemy(Player* player){
 
         // Check if it's time to spawn a boss
         if (!bossIsActive) { // Ensure no boss is currently active before spawning another
-            if (currentScore > 50000 && !ortSeen) {
+        
+            if (currentScore > 75000 && !ortSeen) {
                 // Spawn ORT Xibalba
                 initiateBossSpawn("ORT Xibalba");
                 ortSeen = true; // Prevent multiple spawns
             }
-            else if (currentScore > 10000 && !ufoSeen) {
+            else if (currentScore > 50000 && !ufoSeen) {
                 // Spawn UFO ORT
                 initiateBossSpawn("Galactica Supercell ORT");
                 ufoSeen = true; // Prevent multiple spawns
+            }
+            else if (currentScore > 10000 && !ufoSeen) {
+                // Spawn UFO ORT
+                initiateBossSpawn("Space Station");
+                stationSeen = true; // Prevent multiple spawns
             }
         }
 
@@ -295,9 +302,15 @@ void EnemyManager::spawnBoss(const string& bossType) {
         auto boss = make_unique<UFO>(ofGetWidth()/2, 20, "Galactica Supercell ORT");
         bossList.push_back(std::move(boss));
     }
+    else if (bossType == "Space Station") {
+        stationSeen = true;
+        auto boss = make_unique<SpaceStation>(ofGetWidth()/2, 20, "Space Station");
+        bossList.push_back(std::move(boss));
+    }
     // Reset the spawn timer and clear boss spawning flags
     enemySpawnTimer = 0;
     bossIsSpawning = false;
+    
 }
 
 
@@ -311,6 +324,7 @@ int EnemyManager::whichSpawnInterval(int playerScore) {
     // Simplified example, adjust intervals as needed
     if (!bossIsActive && ortSeen) return 5;
     if (!bossIsActive && ufoSeen) return 10;
+    if (!bossIsActive && stationSeen) return 15;
     if (bossIsActive) return 150; // Slower spawn rate if a boss is active
     if (playerScore < 1000) return 60; // Fast spawn rate for low scores
     if (playerScore < 5000) return 80; // Slower spawn as difficulty increases
@@ -324,6 +338,7 @@ void EnemyManager::cleanUp() {
     bossList.clear();
     ufoSeen = false;
     ortSeen = false;
+    stationSeen = false;
     bossHasDied();
 }
 

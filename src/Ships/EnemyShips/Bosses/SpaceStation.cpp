@@ -1,47 +1,15 @@
-#include "ORT.h"
+#include "SpaceStation.h"
 
-ORT::ORT(int xpos, int ypos, string name) : Boss(xpos, ypos,0.5, 750, name) {
-    enemyShipSprite.load("CompressedImages/ORT_Xibalba-min.png");
+SpaceStation::SpaceStation(int xpos, int ypos, string name) : Boss(ofGetWidth()/2, ofGetHeight()/2 ,0.5, 250, name) {
+    enemyShipSprite.load("ShipModels/Space_Station.png");
     enemyHitBox = new HitBox(pos.x, pos.y - 30, enemyShipSprite.getWidth() * 0.05, enemyShipSprite.getHeight() * 0.075);
     
     shootingPoint = ofPoint(pos.x + enemyHitBox->box.getWidth(), pos.y + enemyHitBox->box.getHeight() / 2);
     
-    
-    switchPosIndex = 0;
-    switchPosTimer = 0;
-
-    possiblePositions = {
-        ofPoint(0, 0),
-        ofPoint(ofGetWidth() * 1/4, ofGetHeight() * 1/4),
-        ofPoint(ofGetWidth() * 1/4, ofGetHeight() * 3/4),
-        ofPoint(ofGetWidth() * 3/4, ofGetHeight() * 1/4),
-        ofPoint(ofGetWidth() * 3/4, ofGetHeight() * 3/4)
-    };
-
-
 
 }
-    
-void ORT::update(const ofPoint& playerPos) {
-    // pos.x += speed;
-    enemyHitBox->box.setPosition(pos.x + 10, pos.y - 30);   // Update the hitbox to follow the boss
-    shootingPoint = ofPoint(pos.x + enemyHitBox->box.getWidth(), pos.y + enemyHitBox->box.getHeight() / 2);   // Update the shooting point
 
-
-    // Update the switch position
-    switchPosTimer++;
-    if (switchPosTimer % 100 == 0) {
-        switchPosIndex++;
-        pos = possiblePositions[switchPosIndex % possiblePositions.size()];
-    }
-
-
-
-
-    // Check if ORT is out of the screen, reset position if necessary
-    // if (pos.x > ofGetWidth()) {
-    //     pos.x = 0;
-    // }
+void SpaceStation::update(const ofPoint& playerPos) {
 
     // Shoot bullets in a semi-circular motion
     if (shotTimer % 50  == 0) { // Adjust the value for the frequency of shooting
@@ -60,7 +28,7 @@ void ORT::update(const ofPoint& playerPos) {
 
 }
 
-void ORT::draw() {
+void SpaceStation::draw() {
     ofPushMatrix();
     ofTranslate(pos.x, pos.y);
     // ofRotateDeg(shipOrientation);
@@ -76,7 +44,7 @@ void ORT::draw() {
 }
 
 
-void ORT::shoot() {
+void SpaceStation::shoot() {
     const int numBullets = 36; // Increase the number of bullets for a smoother spiral
     const float angleStep = 360.0 / numBullets; // Ensure a full circle is covered
 
@@ -88,7 +56,7 @@ void ORT::shoot() {
         // Note: The angle is directly used in the Projectiles constructor
         Projectiles bullet(shootingPoint, angle);
         bullet.setSpeed(3);
-        bullet.setColors(ofColor::red, ofColor::orange); // Set desired colors
+        bullet.setColors(ofColor::red, ofColor::blue); // Set desired colors
         enemyBullets.push_back(bullet);
     }   
 

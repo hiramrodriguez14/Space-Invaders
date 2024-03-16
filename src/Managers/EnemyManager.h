@@ -10,6 +10,8 @@
 // Section for Bosses
 #include "ORT.h"
 #include "UFO.h"
+#include "SpaceStation.h"
+
 
 class EnemyManager {
     //==================== Utility Functions and Variables ====================
@@ -47,6 +49,7 @@ class EnemyManager {
         static bool bossIsActive;
         static bool ufoSeen;
         static bool ortSeen;
+        static bool stationSeen;
 
 
     public:
