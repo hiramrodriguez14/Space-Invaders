@@ -45,5 +45,10 @@ void NewEnemy::shoot() {
     Projectiles p = Projectiles(pos, shipOrientation + 90);
     p.setColors(ofColor::green, ofColor::purple);
     enemyBullets.push_back(p);
+
+     Projectiles p2 = Projectiles(pos+20, shipOrientation + 90); 
+    p2.setColors(ofColor::green, ofColor::purple);
+    enemyBullets.push_back(p2);
+    
     SoundManager::playSong("bulletSound", false);
 }
