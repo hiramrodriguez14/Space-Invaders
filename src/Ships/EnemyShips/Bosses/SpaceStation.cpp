@@ -12,7 +12,7 @@ SpaceStation::SpaceStation(int xpos, int ypos, string name) : Boss(ofGetWidth()/
 void SpaceStation::update(const ofPoint& playerPos) {
 
     // Shoot bullets in a semi-circular motion
-    if (shotTimer % 50  == 0) { // Adjust the value for the frequency of shooting
+    if (shotTimer % 10  == 0) { // Adjust the value for the frequency of shooting
         shoot();
     }
 
@@ -49,13 +49,11 @@ void SpaceStation::shoot() {
 
  float angle = shootAngleOffset;
     Projectiles bullet(shootingPoint, angle);
-    bullet.setSpeed(10); // esta es la velocidad de cada projectil
-    bullet.setColors(ofColor::red, ofColor::blue);
+    bullet.setSpeed(5);
+    bullet.setColors(ofColor::cyan, ofColor::blue);
     enemyBullets.push_back(bullet);
     // Increment the shootAngleOffset for the next call to shoot() to continue the spiral
-    shootAngleOffset += 10.0; // Adjust this value for the desired spiral rotation speed 
-    //cada frame el angulo de la bala disparada va a ser de 30(se puede cambiar)
-    //necesitamos que dispare mas de una bala a la vez y que llame a la funcion de shoot mas rapido 
+    shootAngleOffset += 10.0; // Adjust this value for the desired spiral rotation speed
 
     // Optional: Reset shootAngleOffset to keep it within 0-360 degrees to avoid overflow
     if(shootAngleOffset >= 360.0) {
