@@ -50,7 +50,7 @@ void SpaceStation::shoot() {
  float angle = shootAngleOffset;
     Projectiles bullet(shootingPoint, angle);
     bullet.setSpeed(5);
-    bullet.setColors(ofColor::cyan, ofColor::blue);
+    bullet.setColors(ofColor::cyan, ofColor::azure);
     enemyBullets.push_back(bullet);
     // Increment the shootAngleOffset for the next call to shoot() to continue the spiral
     shootAngleOffset += 10.0; // Adjust this value for the desired spiral rotation speed
