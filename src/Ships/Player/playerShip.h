@@ -34,6 +34,7 @@ class Player{
        // === Public attributes ===
         int lives = 3;
         int health;                         // Needed in public for ease of use and direct access
+        int shield;                         //The amount of shield the player has
         int shipOrientation;                // Orientation of the ship
         unordered_map<int, bool> keyMap;    // A Map is used to handle the keys pressed
         vector<Projectiles> bullets;        // List of bullets
