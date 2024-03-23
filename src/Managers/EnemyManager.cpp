@@ -138,8 +138,19 @@ void EnemyManager::manageCollisions(Player* player) {
         enemy->removeMarkedBullets();
     }
 
-}
+    for(auto& enemy : enemyList) {
+        if(player->hitBox.isColliding(*enemy->getHitBox())){
+            player->health = max(player->health - 0.0001, 0.0);  
+        }
+    }
 
+    for(auto& Boss : bossList) {
+        if(player->hitBox.isColliding(*Boss->getHitBox())){
+            player->health = max(player->health - 0.0001, 0.0);  
+         }
+
+    }
+}
 
 
 void EnemyManager::updateEnemyBullets(EnemyShip* enemy){
