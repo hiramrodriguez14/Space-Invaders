@@ -41,6 +41,7 @@ class Player{
         ofPoint pos;                        // Position of the player
         HitBox hitBox;                      // Hitbox for the player
         bool showHitbox = false;
+        bool shieldon=false;                //if this is true the player should not take damage from any source
 
     // === Constructors ===
         Player();                                      // Default Constructor

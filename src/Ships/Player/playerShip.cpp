@@ -90,6 +90,10 @@ void Player::addPressedKey(int key) {
     {
         maxSpeed=10;
     }
+
+    if(tolower(key)==113){
+        shieldon=true;
+    }
     
 }
 

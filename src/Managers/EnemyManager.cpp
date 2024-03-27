@@ -88,10 +88,12 @@ void EnemyManager::manageCollisions(Player* player) {
     // Handle collisions between enemy bullets and the player
     for (auto& enemy : enemyList) {
 
-        for (auto& bullet : enemy->getBullets()) {
+        for (auto& bullet : enemy->getBullets()) {                      //if shield is activated then the player should not take any damage
             if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet)) {
-
-                player->health = max(player->health - 10.0, 0.0);       // Player takes damage 
+                
+                if(player->shieldon==false){
+                    player->health = max(player->health - 10.0, 0.0);  // Player takes damage 
+                }                                                    
                 
                 bullet.markForDeletion(); // Mark bullet for deletion (without it you would have a memory leak (Ask Bienve what are memory leaks))
             }
@@ -125,7 +127,9 @@ void EnemyManager::manageCollisions(Player* player) {
         for (auto& bullet : Boss->getBullets()) {
             if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet)) {
 
-                player->health = max(player->health - 10.0, 0.0);       // Player takes damage 
+                if(player->shieldon==false){         //if shield is activated then the player should not take any damage
+                    player->health = max(player->health - 10.0, 0.0); // Player takes damage 
+                }      
                 bullet.markForDeletion(); // Mark bullet for deletion
             }
         }
@@ -140,13 +144,17 @@ void EnemyManager::manageCollisions(Player* player) {
 
     for(auto& enemy : enemyList) {
         if(player->hitBox.isColliding(*enemy->getHitBox())){
-            player->health = max(player->health - 0.0001, 0.0);  
+            if(player->shieldon==false){
+               player->health = max(player->health - 0.0001, 0.0);  
+            }
         }
     }
 
     for(auto& Boss : bossList) {
         if(player->hitBox.isColliding(*Boss->getHitBox())){
-            player->health = max(player->health - 0.0001, 0.0);  
+            if(player->shieldon==false){
+                player->health = max(player->health - 0.0001, 0.0);  
+            }
          }
 
     }
