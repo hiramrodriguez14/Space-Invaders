@@ -8,6 +8,8 @@ Player::Player(int Xposition, int Yposition){
     health = 100;
     velocity.set(0, 0);
     this->shipSprite.load("ShipModels/shipModel2.png");
+    
+
 
     this->shipOrientation = 0;
     accelerationAmount = 5.0; // Adjust the value as needed
@@ -30,7 +32,7 @@ void Player::draw() {
         // Draw the ship sprite with the calculated rotation
             ofPushMatrix();
             ofTranslate(this->pos.x, this->pos.y);
-            ofRotateDeg(shipOrientation);
+            ofRotateDeg(shipOrientation);            
 
             this->shipSprite.draw(-20, -20, 45, 45);
 
@@ -92,7 +94,9 @@ void Player::addPressedKey(int key) {
     }
 
     if(tolower(key)==113){
-        shieldon=true;
+        this->shieldon=true;
+        this->shipSprite.load("CompressedImages/ForceShield.png");
+        this->shieldSprite.draw(-20, -20, 45, 45);
     }
     
 }

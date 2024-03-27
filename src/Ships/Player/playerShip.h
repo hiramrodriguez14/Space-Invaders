@@ -9,7 +9,8 @@ using namespace std;
 class Player{ 
 
     private:
-        ofImage shipSprite;                 // Sprite for the ship   
+        ofImage shipSprite;   // Sprite for the ship 
+        ofImage shieldSprite;                //sprite of the shield
 
         int score;                          // Score of the player
 
@@ -50,9 +51,10 @@ class Player{
         int getScore(); 
         void setScore(int score); 
   
-    // Main method to draw the playerShip
+    // Main method to draw the playerShip and shield
         void draw(); 
         ofImage getSprite(){return shipSprite;}
+        ofImage getshield(){return shieldSprite;}
     /*
         Main method to update the playerShip. It handles the movement indirectly by calling processPressedKeys(), and updates the position.
         This is the brain of the class.
