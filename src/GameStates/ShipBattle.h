@@ -32,8 +32,8 @@ private:
     ofTrueTypeFont indicatorFont; // Font for text rendering in regards 
     ofImage backgroundImage;       // Background image of the game
     ofImage heart;                  //lives indicator
+    ofImage bomb;
     
-
 public:   
     // Public members accessible outside the class
     Player* player;                   // Pointer to the player's ship
@@ -56,7 +56,7 @@ public:
 
     // State management
     string getNextState();               // Get the next game state
-
+  
     // Helper methods for game functionality
     void wrapCoords(ofPoint &currentPos);  // Ensure ship stays within screen bounds
     void updateBullets();                   // Update bullets' positions and states

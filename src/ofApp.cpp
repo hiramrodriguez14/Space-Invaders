@@ -22,6 +22,8 @@ void ofApp::setup(){
     SoundManager::loadSong("button", "Sounds/buttonInteract.mp3");
     SoundManager::loadSong("bulletSound", "Sounds/shootingSound.mp3");
     SoundManager::loadSong("Beam", "Sounds/Laser_Beam.mp3");
+    SoundManager::loadSong("Bomb","Sounds/BombSound.mp3");
+    SoundManager::loadSong("Shield","Sounds/Shield2.wav");
 
 //States
     intro = new IntroState();

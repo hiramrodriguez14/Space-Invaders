@@ -12,8 +12,8 @@ ShipBattle::ShipBattle() {
     font.load("Fonts/Orbitron.ttf", 20, true);
     indicatorFont.load("Fonts/Orbitron.ttf", 10, true);
     backgroundImage.load("Menu_Images/BattleArea.jpg");
-     heart.load("ShipModels/heart.png");
-
+    heart.load("ShipModels/heart.png");
+    bomb.load("CompressedImages/Bomb-min.png");
 }
 
 // ====================================
@@ -56,8 +56,9 @@ void ShipBattle::update() {
     if(this->player->lives==0){
         
         this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
-        this->player->lives = 3;
+        this->player->lives = 3; 
         this->setNextState("GameOverState");
+        EnemyManager::bombCount = 0;
         SoundManager::stopSong("battle");
         SoundManager::stopSong("ORT Xibalba");
         SoundManager::stopSong("Galactica Supercell ORT"); //Esto lo hice yo para parar la msuica de los bosses
@@ -75,21 +76,28 @@ void ShipBattle::update() {
             this->playerScore = 0;  // despues que enseña en la pantalla el score vuelve a ser 0
             this->killspreeTimer = 0; //tambien esto
     }
+    //This is the shield depletion logic
     if (player->shieldon && player->shield > 0) {
         long currentTime = ofGetElapsedTimeMillis();
         float elapsedTimeInSeconds = (currentTime -player->shieldActivationTime) / 1000.0f; // Convierte a segundos
         
-        // Si han pasado más de 10 segundos, el escudo se desactiva
+        // If 10 seconds have passed, the shield is deactivated
         if (elapsedTimeInSeconds >= 10.0) {
             player->shield = 0;
             player->shieldon = false;
         } else {
-            // Ajusta el valor de shield basado en cuánto tiempo ha pasado
-            // Por ejemplo, si shield se agota linealmente
+           
             player->shield = 100 - (elapsedTimeInSeconds * (100.0 / 10.0));
         }
     }
-    
+        if(player->shieldon){
+    SoundManager::playSong("Shield", true);
+    SoundManager::setVolume("Shield", 1); // Asume que el rango es de 0 a 100
+   
+}if(!player->shieldon){
+    SoundManager::stopSong("Shield");
+}
+
 }
 
 //====== Draw Method ====== 
@@ -126,6 +134,9 @@ void ShipBattle::draw() {
         ofNoFill();
         ofDrawRectangle(ofGetWidth() - 150, 30, 50, 50);
         ofFill();
+        if(EnemyManager::bombCount>0){
+        bomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+        }
 
     if(this->player->lives>=1){
         heart.draw(ofGetWindowWidth()/2-590, ofGetWindowHeight()/2-275, 25, 25);
@@ -153,6 +164,15 @@ void ShipBattle::keyPressed(int key) {
     }
     if(key == 'o')  player->health = 100;
     if(key == 'p')  playerScore += 10000; 
+
+    if(EnemyManager::bombCount>0 && key=='e'){
+       SoundManager::playSong("Bomb",false);
+       EnemyManager::enemyList.clear();
+       EnemyManager::bombCount--;
+
+            }
+        
+    
 }
 
 void ShipBattle::keyReleased(int key) {

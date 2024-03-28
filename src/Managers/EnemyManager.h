@@ -19,14 +19,17 @@ class EnemyManager {
         static ofVec2f getRandomEdgePoint();
         static int pointsPerUpdateCycle;
         static int getPointsScored() { return pointsPerUpdateCycle; }
-
+        
     private:
         // static unique_ptr<EnemyShip> currentBoss;
         static int enemySpawnTimer;
         static int killSpreeTimer;
-
+  
     //==================== Enemy and Bullet Management ====================
     public:
+    //bomb
+          static int bombCount;
+          
         // Enemy Management
         static bool toggleHitBoxes;
         static vector<unique_ptr<EnemyShip>> enemyList;

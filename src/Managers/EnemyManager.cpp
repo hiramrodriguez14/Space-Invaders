@@ -20,7 +20,7 @@
     int EnemyManager::enemySpawnTimer = 0;
     int EnemyManager::pointsPerUpdateCycle = 100 + 14 * 30;
     int EnemyManager::killSpreeTimer = 0;
-
+    int EnemyManager::bombCount = 0;
 
 // ================= Main Logic ====================
 void EnemyManager::updateEnemies(Player* player){
@@ -111,7 +111,8 @@ void EnemyManager::manageCollisions(Player* player) {
                 player->shield = min(player->shield + 30.0, 100.0); // Reward the player with 30 shield
                 Boss->takeDamage(bullet.getDamage());
                 
-                if (Boss->isDead()) {                   //If the boss has died from a bullet
+                if (Boss->isDead()) { 
+                    bombCount++;                  //If the boss has died from a bullet
                     SoundManager::stopSong(whichBoss);
                     SoundManager::playSong("battle", false);
                     bossHasDied();
@@ -365,7 +366,7 @@ void EnemyManager::cleanUp() {
 
 
 void EnemyManager::removeEnemies() {
-    enemyList.erase(remove_if(enemyList.begin(), enemyList.end(),
+        enemyList.erase(remove_if(enemyList.begin(), enemyList.end(),
         [](const unique_ptr<EnemyShip>& enemy) { return enemy->isDead(); }),
         enemyList.end());
 
