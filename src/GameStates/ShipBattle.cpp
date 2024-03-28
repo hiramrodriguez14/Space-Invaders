@@ -55,7 +55,7 @@ void ShipBattle::update() {
     }
     if(this->player->lives==0){
         
-        this->player->health = 100;
+        this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
         this->player->lives = 3;
         this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
