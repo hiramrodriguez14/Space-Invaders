@@ -6,6 +6,7 @@ Player::Player(int Xposition, int Yposition){
     pos.x = Xposition;
     pos.y = Yposition;
     health = 100;
+    shield = 0;
     velocity.set(0, 0);
     this->shipSprite.load("ShipModels/shipModel2.png");
     
@@ -93,7 +94,7 @@ void Player::addPressedKey(int key) {
         maxSpeed=10;
     }
 
-    if(tolower(key)==113){
+    if(tolower(key)==113 && shield==100){
         this->shieldon=true;
         this->shipSprite.load("CompressedImages/ForceShield.png");
         this->shieldSprite.draw(-20, -20, 45, 45);

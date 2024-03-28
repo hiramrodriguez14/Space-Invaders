@@ -71,6 +71,7 @@ void EnemyManager::manageCollisions(Player* player) {
         for (auto& bullet : player->bullets) {
             if (!bullet.bulletIsOutOfBounds() && enemy->getHitBox()->isHit(bullet)) {
                 player->health = min(player->health + 3.0, 100.0); // Reward the player by healing them
+                player->shield = min(player->shield + 5.0, 100.0); // Reward the player with shield
 
                 enemy->takeDamage(bullet.getDamage());            // Enemy will take damage from the bullet
                 if (enemy->isDead()) {
@@ -107,6 +108,7 @@ void EnemyManager::manageCollisions(Player* player) {
             
             if (!bullet.bulletIsOutOfBounds() && Boss->getHitBox()->isHit(bullet)) {
                 player->health = min(player->health + 3.0, 100.0); // Reward the player
+                player->shield = min(player->shield + 30.0, 100.0); // Reward the player with 30 shield
                 Boss->takeDamage(bullet.getDamage());
                 
                 if (Boss->isDead()) {                   //If the boss has died from a bullet

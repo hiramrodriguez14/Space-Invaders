@@ -8,7 +8,7 @@ ShipBattle::ShipBattle() {
     this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
     this->playerScore = 0;
     this->killspreeTimer = 0;
-    
+
     font.load("Fonts/Orbitron.ttf", 20, true);
     indicatorFont.load("Fonts/Orbitron.ttf", 10, true);
     backgroundImage.load("Menu_Images/BattleArea.jpg");
@@ -204,7 +204,7 @@ void ShipBattle::shieldBar(int currShield, int maxShield){//este es la barra par
     ofDrawRectangle(10, 190, maxShield *2, 20);//crea el barra donde va a estar el escudo
     ofFill();
     ofSetColor(ofColor::blue);
-    ofDrawRectangle(10, 190, maxShield *2, 20);//cambiar max shield por currShield 
+    ofDrawRectangle(10, 190, currShield *2, 20);//cambiar max shield por currShield 
     ofSetColor(ofColor::white);
 }
 
