@@ -33,6 +33,7 @@ class Player{
     public: 
 
        // === Public attributes ===
+      
         int lives = 3;
         int health;                         // Needed in public for ease of use and direct access
         int shield;                         //The amount of shield the player has
@@ -42,8 +43,8 @@ class Player{
         ofPoint pos;                        // Position of the player
         HitBox hitBox;                      // Hitbox for the player
         bool showHitbox = false;
-        bool shieldon=false;                //if this is true the player should not take damage from any source
-
+        bool shieldon=false;              //if this is true the player should not take damage from any source
+        unsigned long long shieldActivationTime; 
     // === Constructors ===
         Player();                                      // Default Constructor
         Player(int Xposition, int Yposition);         // Parametrized Constructor for the playerShip

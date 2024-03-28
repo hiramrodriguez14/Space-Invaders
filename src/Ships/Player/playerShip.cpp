@@ -9,7 +9,8 @@ Player::Player(int Xposition, int Yposition){
     shield = 0;
     velocity.set(0, 0);
     this->shipSprite.load("ShipModels/shipModel2.png");
-    
+      this->shieldSprite.load("CompressedImages/ForceShield.png");
+      
 
 
     this->shipOrientation = 0;
@@ -34,9 +35,12 @@ void Player::draw() {
             ofPushMatrix();
             ofTranslate(this->pos.x, this->pos.y);
             ofRotateDeg(shipOrientation);            
-
+           
             this->shipSprite.draw(-20, -20, 45, 45);
-
+             if(shieldon){
+                this->shieldSprite.draw(-20,-20,45,45);
+            }
+            
             ofPopMatrix();
                 
         // Draw the hitbox around the player ship. Uncomment this line for testing purposes
@@ -95,9 +99,9 @@ void Player::addPressedKey(int key) {
     }
 
     if(tolower(key)==113 && shield==100){
-        this->shieldon=true;
-        this->shipSprite.load("CompressedImages/ForceShield.png");
-        this->shieldSprite.draw(-20, -20, 45, 45);
+        shieldon=true;
+        shieldActivationTime= ofGetElapsedTimeMillis(); 
+      
     }
     
 }

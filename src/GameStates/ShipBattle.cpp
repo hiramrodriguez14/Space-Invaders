@@ -75,6 +75,21 @@ void ShipBattle::update() {
             this->playerScore = 0;  // despues que enseña en la pantalla el score vuelve a ser 0
             this->killspreeTimer = 0; //tambien esto
     }
+    if (player->shieldon && player->shield > 0) {
+        long currentTime = ofGetElapsedTimeMillis();
+        float elapsedTimeInSeconds = (currentTime -player->shieldActivationTime) / 1000.0f; // Convierte a segundos
+        
+        // Si han pasado más de 10 segundos, el escudo se desactiva
+        if (elapsedTimeInSeconds >= 10.0) {
+            player->shield = 0;
+            player->shieldon = false;
+        } else {
+            // Ajusta el valor de shield basado en cuánto tiempo ha pasado
+            // Por ejemplo, si shield se agota linealmente
+            player->shield = 100 - (elapsedTimeInSeconds * (100.0 / 10.0));
+        }
+    }
+    
 }
 
 //====== Draw Method ====== 
@@ -199,12 +214,12 @@ void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {
 }
 
 void ShipBattle::shieldBar(int currShield, int maxShield){//este es la barra para el escudo
-    indicatorFont.drawString("SHIELD", 10, 180);
+    indicatorFont.drawString("SHIELD", 10, 155);
     ofNoFill();
-    ofDrawRectangle(10, 190, maxShield *2, 20);//crea el barra donde va a estar el escudo
+    ofDrawRectangle(10, 165, maxShield *2, 20);//crea el barra donde va a estar el escudo
     ofFill();
     ofSetColor(ofColor::blue);
-    ofDrawRectangle(10, 190, currShield *2, 20);//cambiar max shield por currShield 
+    ofDrawRectangle(10, 165, currShield *2, 20);//cambiar max shield por currShield 
     ofSetColor(ofColor::white);
 }
 
