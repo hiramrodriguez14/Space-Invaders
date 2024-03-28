@@ -4,7 +4,7 @@ SpaceStation::SpaceStation(int xpos, int ypos, string name) : Boss(ofGetWidth()/
     enemyShipSprite.load("ShipModels/Space_Station.png");
     enemyHitBox = new HitBox(ofGetWidth()/2-70, ofGetHeight()/2-65, enemyShipSprite.getWidth() * 0.3, enemyShipSprite.getHeight() * 0.38);
     
-    shootingPoint = ofPoint(pos.x + enemyHitBox->box.getWidth()/2 , pos.y + enemyHitBox->box.getHeight() / 2 +1 );
+    shootingPoint = ofPoint(pos.x + enemyHitBox->box.getWidth()/2-8 , pos.y + enemyHitBox->box.getHeight() / 2 -3 );
     
 
 }
