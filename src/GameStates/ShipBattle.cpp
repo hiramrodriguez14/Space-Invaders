@@ -168,7 +168,11 @@ void ShipBattle::keyPressed(int key) {
     if(EnemyManager::bombCount>0 && key=='e'){
        SoundManager::playSong("Bomb",false);
        EnemyManager::enemyList.clear();
+       for (auto& Boss : EnemyManager::bossList){
+        Boss->takeDamage(100);      
+       }
        EnemyManager::bombCount--;
+
 
             }
         
