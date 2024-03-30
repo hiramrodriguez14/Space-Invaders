@@ -69,7 +69,15 @@ void Player::shoot() {
         if (currentTime - lastShotTime >= shotCooldown) {
 
                 Projectiles p = Projectiles(ofPoint(this->pos.x, this->pos.y), this->shipOrientation);
-                p.setColors(ofColor::azure, ofColor::blueViolet);
+                if (!scship)
+                {
+                    p.setColors(ofColor::azure, ofColor::blueViolet);
+                }
+                else{
+                    p.setColors(ofColor::deepPink, ofColor::orangeRed);
+                }
+                
+                
                 this->bullets.push_back(p);
 
             // SoundManager::playSong("bulletSound", false);
