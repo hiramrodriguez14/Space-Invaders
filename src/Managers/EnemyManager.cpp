@@ -269,7 +269,7 @@ void EnemyManager::spawnEnemy(Player* player){
                 initiateBossSpawn("Galactica Supercell ORT");
                 ufoSeen = true; // Prevent multiple spawns
             }
-            else if (currentScore > 10000 && !ufoSeen) {
+            else if (currentScore > 10000 && !stationSeen) {
                 // Spawn UFO ORT
                 initiateBossSpawn("Space Station");
                 stationSeen = true; // Prevent multiple spawns
