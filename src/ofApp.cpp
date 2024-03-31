@@ -25,7 +25,7 @@ void ofApp::setup(){
     SoundManager::loadSong("Bomb","Sounds/BombSound.mp3");
     SoundManager::loadSong("Shield","Sounds/Shield2.wav");
     SoundManager::loadSong("Space Station","Sounds/Cosmic_Sea_of_Trees.mp3");
-
+    SoundManager::loadSong("Coin","Sounds/Weird.wav");
 //States
     intro = new IntroState();
     battle = new ShipBattle();

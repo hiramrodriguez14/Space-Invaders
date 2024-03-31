@@ -55,13 +55,7 @@ void ShipBattle::update() {
     }
     if(this->player->lives==0){
         
-        this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
-        this->player->lives = 3; 
-        this->setNextState("GameOverState");
-        EnemyManager::bombCount = 0;
-        SoundManager::stopSong("battle");
-        SoundManager::stopSong("ORT Xibalba");
-        SoundManager::stopSong("Galactica Supercell ORT"); //Esto lo hice yo para parar la msuica de los bosses
+       die(); //This calls the die function to simplify the code
         if(EnemyManager::getSpawningBossType() != ""){
             SoundManager::stopSong(EnemyManager::getSpawningBossType());  //<---- maybe hay un bug con esto se supone que
                                                                           //pare la musica de los boss y no lo hace, por eso hice lo de arriba
@@ -98,9 +92,10 @@ void ShipBattle::update() {
     SoundManager::stopSong("Shield");
 }
     //Logic for skin change
-    if (EnemyManager::timeForSkin && !player->isShipChanged()) {
+    if (EnemyManager::timeForSkin && !player->isShipChanged()) { //the first boss has been killed and the ship isnt changed
         player->changeShipAppearance("CompressedImages/secondShip.png");
-        player->setShipChanged(true); // Set a flag to avoid repeated calls
+        SoundManager::playSong("Coin",false); //Si te das cuentas cuando mueres se activa el sonido lo que implica que por alguna razon se activa esto
+        player->setShipChanged(true); // Set to avoid repeated calls
     }
 }
 

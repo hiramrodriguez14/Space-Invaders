@@ -1,5 +1,4 @@
 #include "State.h"
-
 class GameOverState : public State{
     private:
         ofImage titleImage;

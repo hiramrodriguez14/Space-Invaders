@@ -164,4 +164,17 @@ void Player::movement(char keyPressed) {
         // Rotate the ship clockwise
         shipOrientation += rotationSpeed;
         }
-    }   
+}
+ void Player::changeShipAppearance(const string& imagePath) {
+    shipSprite.load(imagePath); // Load the new ship image
+}
+
+void Player::setShipChanged(bool changed) {
+    shipChanged = changed;
+}
+
+bool Player::isShipChanged() const {
+    return shipChanged;
+}
+
+    

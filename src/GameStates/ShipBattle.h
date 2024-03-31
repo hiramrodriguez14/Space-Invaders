@@ -69,4 +69,16 @@ public:
     double killSpreeMode();                                 // Logic for kill spree mode
     double scoreMultiplier();                               // Calculate score multiplier based on game state
     void removeMarkedPlayerBullets();                       // Remove bullets marked for deletion
+
+    // This function handles reset of important variables when dying
+    void die(){
+        this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
+        this->player->lives = 3; 
+        this->setNextState("GameOverState");   
+        // player->setShipChanged(false);
+        player->changeShipAppearance("CompressedImages/secondShip.png");
+        SoundManager::stopSong("battle");
+        SoundManager::stopSong("ORT Xibalba");
+        SoundManager::stopSong("Galactica Supercell ORT");
+    }
 };
