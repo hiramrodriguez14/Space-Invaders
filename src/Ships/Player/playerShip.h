@@ -44,6 +44,7 @@ class Player{
         HitBox hitBox;                      // Hitbox for the player
         bool showHitbox = false;
         bool shieldon=false;              //if this is true the player should not take damage from any source
+        bool scship=false;
         unsigned long long shieldActivationTime; 
     // === Constructors ===
         Player();                                      // Default Constructor

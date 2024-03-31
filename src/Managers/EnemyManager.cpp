@@ -113,6 +113,8 @@ void EnemyManager::manageCollisions(Player* player) {
                 
                 if (Boss->isDead()) { 
                     bombCount++;                  //If the boss has died from a bullet
+                    player->scship=true;          //To change the bullets and ship after killing the boss
+                    bullet.setDamage(20);         //*******not sure if this makes the bullets do more damage(needs fix)***********
                     SoundManager::stopSong(whichBoss);
                     SoundManager::playSong("battle", false);
                     bossHasDied();

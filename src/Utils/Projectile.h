@@ -30,6 +30,7 @@ class Projectiles {
 
         // Getter and Setter Methods
         int getDamage() { return damage; }              // Returns the damage of the projectile
+        void setDamage(int d) {damage=d;}               //sets damage
         void setSpeed(int s) { speed = s; }             // Sets the speed of the projectile
         void setColors(ofColor c1, ofColor c2);         // Sets the colors of the projectile
 

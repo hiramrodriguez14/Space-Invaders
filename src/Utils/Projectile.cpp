@@ -5,7 +5,7 @@ Projectiles::Projectiles(ofPoint p, float angle) {
     this->angle = angle;
     width = 7;
     height = 12;
-    speed = 15;//subi la velocidad de las balas ya que ocurria un problema cuando la nave hacia sprint
+    speed = 13;//subi la velocidad de las balas ya que ocurria un problema cuando la nave hacia sprint
     damage = 10;
     markedForDeletion = false;
 }
@@ -15,7 +15,7 @@ Projectiles::Projectiles(ofPoint p, float angle, int dmg) {
     this->angle = angle;
     width = 7;
     height = 12;
-    speed = 15;//cambio de velocidad^^^
+    speed = 13;//cambio de velocidad^^^
     damage = dmg;
     markedForDeletion = false;
 }
