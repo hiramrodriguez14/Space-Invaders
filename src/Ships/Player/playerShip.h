@@ -11,7 +11,7 @@ class Player{
     private:
         ofImage shipSprite;   // Sprite for the ship 
         ofImage shieldSprite;                //sprite of the shield
-
+        int damage=10;
         int score;                          // Score of the player
 
     // === Attributes related to movement ===
@@ -33,7 +33,7 @@ class Player{
     public: 
 
        // === Public attributes ===
-      
+        
         int lives = 3;
         int health;                         // Needed in public for ease of use and direct access
         int shield;                         //The amount of shield the player has
@@ -73,6 +73,9 @@ class Player{
         Useful method in case you want to modify the shot cooldown.
     */
         void setShotCooldown(float shotCooldown);
+
+        //to set the bullet dmg
+        void setPlayerBullet(int damage);
 
     /*
         method used for bullet removal.

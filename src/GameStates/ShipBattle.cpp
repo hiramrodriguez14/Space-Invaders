@@ -92,7 +92,7 @@ void ShipBattle::update() {
     }
         if(player->shieldon){
     SoundManager::playSong("Shield", true);
-    SoundManager::setVolume("Shield", 1); // Asume que el rango es de 0 a 100
+    SoundManager::setVolume("Shield", 1); 
    
 }if(!player->shieldon){
     SoundManager::stopSong("Shield");

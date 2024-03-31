@@ -68,7 +68,7 @@ void Player::shoot() {
     // Check if enough time has passed since the last shot
         if (currentTime - lastShotTime >= shotCooldown) {
 
-                Projectiles p = Projectiles(ofPoint(this->pos.x, this->pos.y), this->shipOrientation);
+                Projectiles p = Projectiles(ofPoint(this->pos.x, this->pos.y), this->shipOrientation,damage);
                 if (!scship)
                 {
                     p.setColors(ofColor::azure, ofColor::blueViolet);
@@ -89,6 +89,8 @@ void Player::shoot() {
 }
 
 void Player::setShotCooldown(float shotCooldown) { this->shotCooldown = shotCooldown; }
+
+void Player::setPlayerBullet(int damage){this->damage=damage;}
 
 void Player::removeMarkedBullets(){
     bullets.erase(remove_if(bullets.begin(), bullets.end(),
