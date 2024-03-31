@@ -11,14 +11,16 @@
 class Boss : public EnemyShip {
     
     protected:
-        int BossHealth;
+        
         string bossName;
         ofTrueTypeFont font;
         bool moveLeft;
         bool moveRight;
-
+        
 
     public:
+
+        int BossHealth;
         Boss(int xpos, int ypos, double speed, int health, string name) : EnemyShip(xpos, ypos, speed, health, 10000) {
             bossName = name;
             BossHealth = health;
@@ -32,7 +34,7 @@ class Boss : public EnemyShip {
         virtual void shoot() = 0;
  
         string getName() { return this->bossName; }
-
+        int getBossHealth(){return this->health;}
  
     void showBossHealth() {
         // Draw the boss name above the health bar

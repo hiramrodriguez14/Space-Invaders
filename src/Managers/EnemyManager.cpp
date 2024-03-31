@@ -21,6 +21,7 @@
     int EnemyManager::pointsPerUpdateCycle = 100 + 14 * 30;
     int EnemyManager::killSpreeTimer = 0;
     int EnemyManager::bombCount = 0;
+    
 
 // ================= Main Logic ====================
 void EnemyManager::updateEnemies(Player* player){
@@ -267,7 +268,7 @@ void EnemyManager::spawnEnemy(Player* player){
                 initiateBossSpawn("Galactica Supercell ORT");
                 ufoSeen = true; // Prevent multiple spawns
             }
-            else if (currentScore > 10000 && !ufoSeen) {
+            else if (currentScore > 10000 && !stationSeen) {
                 // Spawn UFO ORT
                 initiateBossSpawn("Space Station");
                 stationSeen = true; // Prevent multiple spawns
@@ -314,20 +315,20 @@ void EnemyManager::initiateBossSpawn(string bossType) {
 
 void EnemyManager::spawnBoss(const string& bossType) {
     // Based on bossType, spawn the actual boss
-    if (bossType == "ORT Xibalba") {
-        ortSeen = true;   
+    if ( bossType == "ORT Xibalba") {  
         auto boss = make_unique<ORT>(0, ofGetHeight()/2 -50, "ORT Xibalba");
         bossList.push_back(std::move(boss));
+        
     } 
     else if (bossType == "Galactica Supercell ORT") {
-        ufoSeen = true;
         auto boss = make_unique<UFO>(ofGetWidth()/2, 20, "Galactica Supercell ORT");
         bossList.push_back(std::move(boss));
+      
     }
-    else if (bossType == "Space Station") {
-        stationSeen = true;
+    else if ( bossType == "Space Station") {
         auto boss = make_unique<SpaceStation>(ofGetWidth()/2, 20, "Space Station");
         bossList.push_back(std::move(boss));
+         
     }
     // Reset the spawn timer and clear boss spawning flags
     enemySpawnTimer = 0;

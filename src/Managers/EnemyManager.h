@@ -29,7 +29,7 @@ class EnemyManager {
     public:
     //bomb
           static int bombCount;
-          
+          static bool stationSeen;
         // Enemy Management
         static bool toggleHitBoxes;
         static vector<unique_ptr<EnemyShip>> enemyList;
@@ -52,7 +52,7 @@ class EnemyManager {
         static bool bossIsActive;
         static bool ufoSeen;
         static bool ortSeen;
-        static bool stationSeen;
+        
 
 
     public:
