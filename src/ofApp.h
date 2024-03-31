@@ -4,7 +4,7 @@
 #include "State.h"
 #include "SoundManager.h"
 #include "ShipBattle.h"
-#include "introState.h"
+#include "IntroState.h"
 #include "GameOverState.h"
 #include <string>
 #include <cstdlib> 

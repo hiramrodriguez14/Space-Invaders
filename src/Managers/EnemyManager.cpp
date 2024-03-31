@@ -11,6 +11,7 @@
     bool EnemyManager::ortSeen = false;
     bool EnemyManager::stationSeen = false;
 
+    bool EnemyManager::timeForSkin = false;
     string EnemyManager::whichBoss = "";
     int EnemyManager::bossWarningTimer = 0;
 
@@ -339,6 +340,7 @@ void EnemyManager::spawnBoss(const string& bossType) {
 
 
 void EnemyManager::bossHasDied() {
+    timeForSkin=true;
     bossIsActive = false;
     bossIsSpawning = false;
     whichBoss = "";

@@ -13,10 +13,10 @@ class Player{
         ofImage shieldSprite;                //sprite of the shield
         int damage=10;
         int score;                          // Score of the player
-
+        bool shipChanged;
     // === Attributes related to movement ===
         float maxSpeed = 5;         // Maximum speed of the player
-        float speed;                // Current speed of the player
+        // float speed;                // Current speed of the player
         ofVec2f velocity;           
         float accelerationAmount;   // Amount of acceleration
         bool isMoving = false;      // Flag to track if a movement key is being held
@@ -52,7 +52,11 @@ class Player{
     
         int getScore(); 
         void setScore(int score); 
-  
+    
+    //getter, setter and image functionality for ship skin
+        void setShipChanged(bool changed);
+        bool isShipChanged() const;
+        void changeShipAppearance(const std::string& imagePath);
     // Main method to draw the playerShip and shield
         void draw(); 
         ofImage getSprite(){return shipSprite;}

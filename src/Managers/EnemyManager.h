@@ -29,7 +29,7 @@ class EnemyManager {
     public:
     //bomb
           static int bombCount;
-          
+          static bool timeForSkin;
         // Enemy Management
         static bool toggleHitBoxes;
         static vector<unique_ptr<EnemyShip>> enemyList;

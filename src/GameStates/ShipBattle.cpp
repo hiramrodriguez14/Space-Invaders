@@ -97,7 +97,11 @@ void ShipBattle::update() {
 }if(!player->shieldon){
     SoundManager::stopSong("Shield");
 }
-
+    //Logic for skin change
+    if (EnemyManager::timeForSkin && !player->isShipChanged()) {
+        player->changeShipAppearance("CompressedImages/secondShip.png");
+        player->setShipChanged(true); // Set a flag to avoid repeated calls
+    }
 }
 
 //====== Draw Method ====== 
