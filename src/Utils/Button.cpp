@@ -36,7 +36,7 @@ void Button::draw() {
     ofImage img;
     
     if(imagePath == "") {   // Default drawing method 
-        ofSetColor(50, 50, 170);
+        ofSetColor(0, 0, 255);
         ofDrawRectangle(xPos, yPos, width, height);
         ofSetColor(255);
         // Calculate the center position for the text

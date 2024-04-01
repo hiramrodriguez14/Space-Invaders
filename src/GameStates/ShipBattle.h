@@ -75,8 +75,7 @@ public:
         this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
         this->player->lives = 3; 
         this->setNextState("GameOverState");   
-        // player->setShipChanged(false);
-        player->changeShipAppearance("CompressedImages/secondShip.png");
+        player->setShipChanged(false);
         SoundManager::stopSong("battle");
         SoundManager::stopSong("ORT Xibalba");
         SoundManager::stopSong("Galactica Supercell ORT");

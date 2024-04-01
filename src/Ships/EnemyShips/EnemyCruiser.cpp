@@ -2,8 +2,9 @@
 
 EnemyCruiser::EnemyCruiser(int xpos, int ypos) : EnemyShip(xpos, ypos, 1.0, 10, 50) {
     amIBoss = false;
-    enemyShipSprite.load("CompressedImages/EnemyCruiser-min.png");
+    enemyShipSprite.load("ShipModels/firstEnemy.png");
     enemyHitBox = new HitBox(pos, enemyShipSprite.getWidth() * 0.03, enemyShipSprite.getHeight() * 0.03);
+     enemyShipSprite.rotate90(2);
 }
 
 

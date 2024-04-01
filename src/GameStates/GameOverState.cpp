@@ -1,11 +1,11 @@
 #include "GameOverState.h"
 //Use maps instead of a vector
 GameOverState::GameOverState(){
-    titleImage.load("Menu_Images/introWallpaper.jpg");
+    titleImage.load("Menu_Images/SpaceBackGround.jpg");
     titleFont.load("Fonts/Orbitron.ttf", 50);
     textFont.load("Fonts/Orbitron.ttf", 30);
 
-    Button* PlayButton = new Button(ofGetWidth()/2 - 100, ofGetHeight() * 3/4, 200, 50, "", "Play Again");
+    Button* PlayButton = new Button(ofGetWidth()/2 - 75, ofGetHeight() * 3/4, 200, 50, "", "Play Again");
 
     buttons.push_back(PlayButton);
  
@@ -42,11 +42,11 @@ void GameOverState::draw(){
     // Display the scores
     titleFont.drawString("GAME OVER", ofGetWidth()/4 + 75, 100);
 
-    textFont.drawString("High Score: ", ofGetWidth()/4 - 200, ofGetHeight()/4 + 120);
-    textFont.drawString(to_string(HighScore), ofGetWidth() * 3/4, ofGetHeight()/4 + 120);
+    textFont.drawString("High Score: ", ofGetWidth()/4 - 200, ofGetHeight()/2 + 120);
+    textFont.drawString(to_string(HighScore), ofGetWidth() * 3/4, ofGetHeight()/2 + 120);
 
-    textFont.drawString("Current Score: ", ofGetWidth()/4 - 200, ofGetHeight()/4 + 160);
-    textFont.drawString(to_string(currScore), ofGetWidth() * 3/4, ofGetHeight()/4 + 160);
+    textFont.drawString("Current Score: ", ofGetWidth()/4 - 200, ofGetHeight()/2 + 160);
+    textFont.drawString(to_string(currScore), ofGetWidth() * 3/4, ofGetHeight()/2 + 160);
 
     // New high score message
     if (highScoreAchieved) {

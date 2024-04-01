@@ -11,7 +11,7 @@ ShipBattle::ShipBattle() {
 
     font.load("Fonts/Orbitron.ttf", 20, true);
     indicatorFont.load("Fonts/Orbitron.ttf", 10, true);
-    backgroundImage.load("Menu_Images/BattleArea.jpg");
+    backgroundImage.load("Menu_Images/Galaxy.jpg");
     heart.load("ShipModels/heart.png");
     bomb.load("CompressedImages/Bomb-min.png");
 }
@@ -93,9 +93,9 @@ void ShipBattle::update() {
 }
     //Logic for skin change
     if (EnemyManager::timeForSkin && !player->isShipChanged()) { //the first boss has been killed and the ship isnt changed
-        player->changeShipAppearance("CompressedImages/secondShip.png");
+       this->player->changeShipAppearance("ShipModels/firstShip.png");
         SoundManager::playSong("Coin",false); //Si te das cuentas cuando mueres se activa el sonido lo que implica que por alguna razon se activa esto
-        player->setShipChanged(true); // Set to avoid repeated calls
+        this->player->setShipChanged(true); // Set to avoid repeated calls
     }
 }
 
@@ -137,14 +137,15 @@ void ShipBattle::draw() {
         bomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
         }
 
+     indicatorFont.drawString("LIVES:", 510, 80);
     if(this->player->lives>=1){
-        heart.draw(ofGetWindowWidth()/2-590, ofGetWindowHeight()/2-275, 25, 25);
+        heart.draw(ofGetWindowWidth()/2-25, ofGetWindowHeight()/2-325, 25, 25);
     }
      if(this->player->lives>=2){
-        heart.draw(ofGetWindowWidth()/2-560, ofGetWindowHeight()/2-275, 25, 25);
+        heart.draw(ofGetWindowWidth()/2+5, ofGetWindowHeight()/2-325, 25, 25);
     }
      if(this->player->lives==3){
-        heart.draw(ofGetWindowWidth()/2-530, ofGetWindowHeight()/2-275, 25, 25);
+        heart.draw(ofGetWindowWidth()/2+35, ofGetWindowHeight()/2-325, 25, 25);
     }
     
 }
@@ -237,12 +238,12 @@ void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {
 }
 
 void ShipBattle::shieldBar(int currShield, int maxShield){//este es la barra para el escudo
-    indicatorFont.drawString("SHIELD", 10, 155);
+    indicatorFont.drawString("SHIELD", 10, 120);
     ofNoFill();
-    ofDrawRectangle(10, 165, maxShield *2, 20);//crea el barra donde va a estar el escudo
+    ofDrawRectangle(10, 130, maxShield *2, 20);//crea el barra donde va a estar el escudo
     ofFill();
     ofSetColor(ofColor::blue);
-    ofDrawRectangle(10, 165, currShield *2, 20);//cambiar max shield por currShield 
+    ofDrawRectangle(10, 130, currShield *2, 20);//cambiar max shield por currShield 
     ofSetColor(ofColor::white);
 }
 

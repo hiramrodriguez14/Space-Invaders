@@ -365,7 +365,9 @@ void EnemyManager::cleanUp() {
     ufoSeen = false;
     ortSeen = false;
     stationSeen = false;
-    bossHasDied();//esto ocasiona que al morir se llame la funcion la cual hace qu
+    bossIsActive = false;
+    bossIsSpawning = false;
+    whichBoss = "";
     timeForSkin=false;
     bombCount=0;
 
