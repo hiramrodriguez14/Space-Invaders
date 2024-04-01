@@ -8,7 +8,8 @@ Player::Player(int Xposition, int Yposition){
     health = 100;
     shield = 0;
     velocity.set(0, 0);
-    this->shipSprite.load("ShipModels/shipModel2.png");
+    this->shipSprite.load("ShipModels/secondShip.png");
+    
       this->shieldSprite.load("CompressedImages/ForceShield.png");
       
 
@@ -16,7 +17,7 @@ Player::Player(int Xposition, int Yposition){
     this->shipOrientation = 0;
     accelerationAmount = 5.0; // Adjust the value as needed
     score = 0;
-    hitBox =  HitBox(pos, shipSprite.getWidth() * 0.25, shipSprite.getHeight() * 0.15);
+    hitBox =  HitBox(pos, shipSprite.getWidth() * 0.015, shipSprite.getHeight() * 0.015);
             
     lastShotTime = 0;
     shotCooldown = 0.1;  // Set the cooldown duration to 0.5 seconds (adjust as needed)
