@@ -13,7 +13,9 @@ ShipBattle::ShipBattle() {
     indicatorFont.load("Fonts/Orbitron.ttf", 10, true);
     backgroundImage.load("Menu_Images/Galaxy.jpg");
     heart.load("ShipModels/heart.png");
-    bomb.load("CompressedImages/Bomb-min.png");
+    atomicbomb.load("CompressedImages/atomic_bomb.png");
+     nanobomb.load("CompressedImages/Bomb-min.png");
+      fartbomb.load("CompressedImages/Fart-Bomb.png");
 }
 
 // ====================================
@@ -23,6 +25,7 @@ ShipBattle::ShipBattle() {
 
 // Update Method
 void ShipBattle::update() {
+
     // Boss spawn logic
     if (EnemyManager::isBossSpawning()) {
         displayBossWarning = true;
@@ -97,13 +100,16 @@ void ShipBattle::update() {
         SoundManager::playSong("Coin",false); //Si te das cuentas cuando mueres se activa el sonido lo que implica que por alguna razon se activa esto
         this->player->setShipChanged(true); // Set to avoid repeated calls
     }
+
+     float deltaTime = ofGetLastFrameTime();
+     particleSystem.update(deltaTime); // Update the particle system
 }
 
 //====== Draw Method ====== 
 void ShipBattle::draw() {
-    ofSetBackgroundColor(ofColor::black);
+     ofSetColor(255);  // Ensure color is reset before drawing the background
     backgroundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
-    
+    particleSystem.draw();
     // Draw the score
     ofSetColor(ofColor::white);
     font.drawString("SCORE " + to_string(playerScore), ofGetWidth() / 2 - 50, 50);
@@ -134,7 +140,16 @@ void ShipBattle::draw() {
         ofDrawRectangle(ofGetWidth() - 150, 30, 50, 50);
         ofFill();
         if(EnemyManager::bombCount>0){
-        bomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+           particleSystem.whichBomb(); // Llama a whichBomb() para configurar el valor de bomb
+           bombValue = particleSystem.getBomb(); // Obtiene el valor actualizado de bomb
+            if(bombValue==0){
+        nanobomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+            }else if(bombValue==1){
+                 atomicbomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+            }else if(bombValue==2){
+                fartbomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+            }
+           
         }
 
      indicatorFont.drawString("LIVES:", 510, 80);
@@ -166,10 +181,18 @@ void ShipBattle::keyPressed(int key) {
     if(key == 'p')  playerScore += 10000; 
 
     if(EnemyManager::bombCount>0 && key=='e'){
-       SoundManager::playSong("Bomb",false);
+        if(bombValue==0){
+       SoundManager::playSong("Nano",false);
+        }else if(bombValue==1){
+            SoundManager::playSong("Atomic",false);
+        }else if(bombValue==2){
+            SoundManager::playSong("Fart",false);
+        }
+       particleSystem.explode(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
        EnemyManager::enemyList.clear();
+        this->playerScore += 1000;
        for (auto& Boss : EnemyManager::bossList){
-        Boss->takeDamage(100);      
+        Boss->takeDamage(Boss->getHealth()/4);      
        }
        EnemyManager::bombCount--;
 

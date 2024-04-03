@@ -22,10 +22,12 @@ void ofApp::setup(){
     SoundManager::loadSong("button", "Sounds/buttonInteract.mp3");
     SoundManager::loadSong("bulletSound", "Sounds/shootingSound.mp3");
     SoundManager::loadSong("Beam", "Sounds/Laser_Beam.mp3");
-    SoundManager::loadSong("Bomb","Sounds/BombSound.mp3");
+    SoundManager::loadSong("Atomic","Sounds/BombSound.mp3");
     SoundManager::loadSong("Shield","Sounds/Shield2.wav");
     SoundManager::loadSong("Space Station","Sounds/Cosmic_Sea_of_Trees.mp3");
     SoundManager::loadSong("Coin","Sounds/Weird.wav");
+    SoundManager::loadSong("Nano","Sounds/nanoBomb.wav");
+    SoundManager::loadSong("Fart","Sounds/fartBomb.wav");
 //States
     intro = new IntroState();
     battle = new ShipBattle();
