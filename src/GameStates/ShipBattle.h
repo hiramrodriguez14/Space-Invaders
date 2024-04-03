@@ -74,8 +74,11 @@ public:
     void die(){
         this->player = new Player(ofGetWidth() / 2, ofGetHeight() / 2);
         this->player->lives = 3; 
+        this->player->scship=false;
+        EnemyManager::timeForSkin=false;
+        this->player->changeShipAppearance("ShipModels/secondShip.png");
+        this->player->setShipChanged(false); 
         this->setNextState("GameOverState");   
-        player->setShipChanged(false);
         SoundManager::stopSong("battle");
         SoundManager::stopSong("ORT Xibalba");
         SoundManager::stopSong("Galactica Supercell ORT");

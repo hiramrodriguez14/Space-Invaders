@@ -92,7 +92,7 @@ void ShipBattle::update() {
     SoundManager::stopSong("Shield");
 }
     //Logic for skin change
-    if (EnemyManager::timeForSkin && !player->isShipChanged()) { //the first boss has been killed and the ship isnt changed
+    if (EnemyManager::timeForSkin == true && !player->isShipChanged()) { //the first boss has been killed and the ship isnt changed
        this->player->changeShipAppearance("ShipModels/firstShip.png");
         SoundManager::playSong("Coin",false); //Si te das cuentas cuando mueres se activa el sonido lo que implica que por alguna razon se activa esto
         this->player->setShipChanged(true); // Set to avoid repeated calls
