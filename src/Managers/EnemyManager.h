@@ -30,6 +30,7 @@ class EnemyManager {
     //bomb
           static int bombCount;
           static bool timeForSkin;
+          static bool newBomb;
         // Enemy Management
         static bool toggleHitBoxes;
         static vector<unique_ptr<EnemyShip>> enemyList;

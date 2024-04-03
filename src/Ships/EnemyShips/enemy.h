@@ -11,7 +11,6 @@ class EnemyShip {
     protected:
         ofPoint pos = ofPoint(0, 0);
         float speed = 5.0000;
-        int health;
         float damping;
         ofVec2f movement;
         int shipOrientation;
@@ -30,7 +29,7 @@ class EnemyShip {
     public:
         //  For debugging purposes. I added a boolean to toggle the hitboxes for all enemies
         bool showHitboxes = false;
-
+        int health; //made public ffor benefit of the bomb damage
         //Main Constructor for the EnemyShip class.
         EnemyShip(int xpos, int ypos, float _speed, int health, int score) {
             pos.x = xpos;
@@ -57,7 +56,7 @@ class EnemyShip {
         HitBox* getHitBox() { return enemyHitBox; }
         vector<Projectiles>& getBullets() { return enemyBullets; }
         int getPoints() { return score; }
-
+        int getHealth(){return health;}
         //Other methods:
         virtual void takeDamage(int dmg) {
             if(health - dmg <= 0) {

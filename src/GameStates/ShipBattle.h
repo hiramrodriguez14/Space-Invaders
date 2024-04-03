@@ -7,6 +7,9 @@
 #include "ORT.h"
 #include "UFO.h"
 #include "playerShip.h"
+#include "ParticleSystem.h"
+#include "Particle.h"
+#include "ofMain.h"
 
 /*
     Note from author:
@@ -32,8 +35,12 @@ private:
     ofTrueTypeFont indicatorFont; // Font for text rendering in regards 
     ofImage backgroundImage;       // Background image of the game
     ofImage heart;                  //lives indicator
-    ofImage bomb;
-    
+    ofImage atomicbomb;
+     ofImage nanobomb;
+      ofImage fartbomb;
+    ParticleSystem particleSystem;
+    Particle particle;
+    int bombValue;
 public:   
     // Public members accessible outside the class
     Player* player;                   // Pointer to the player's ship

@@ -12,6 +12,7 @@
     bool EnemyManager::stationSeen = false;
 
     bool EnemyManager::timeForSkin = false;
+    bool EnemyManager::newBomb = false;
     string EnemyManager::whichBoss = "";
     int EnemyManager::bossWarningTimer = 0;
 
@@ -108,12 +109,15 @@ void EnemyManager::manageCollisions(Player* player) {
         for (auto& bullet : player->bullets) {
             
             if (!bullet.bulletIsOutOfBounds() && Boss->getHitBox()->isHit(bullet)) {
-                player->health = min(player->health + 3.0, 100.0); // Reward the player
+                player->health = min(player->health + 5.0, 100.0); // Reward the player
                 player->shield = min(player->shield + 30.0, 100.0); // Reward the player with 30 shield
                 Boss->takeDamage(bullet.getDamage());
                 
                 if (Boss->isDead()) { 
-                    bombCount++;                  //If the boss has died from a bullet
+                    newBomb=true;
+                    if(bombCount==0){
+                        bombCount++;
+                    }                                //If the boss has died from a bullet
                     player->scship=true;          //To change the bullets and ship after killing the boss
                     player->setPlayerBullet(20);       //*******not sure if this makes the bullets do more damage(needs fix)***********
                     SoundManager::stopSong(whichBoss);
@@ -349,8 +353,8 @@ void EnemyManager::bossHasDied() {
 int EnemyManager::whichSpawnInterval(int playerScore) {
     // Simplified example, adjust intervals as needed
     if (!bossIsActive && ortSeen) return 5;
-    if (!bossIsActive && ufoSeen) return 10;
-    if (!bossIsActive && stationSeen) return 15;
+    if (!bossIsActive && ufoSeen) return 50;
+    if (!bossIsActive && stationSeen) return 50;
     if (bossIsActive) return 150; // Slower spawn rate if a boss is active
     if (playerScore < 1000) return 60; // Fast spawn rate for low scores
     if (playerScore < 5000) return 80; // Slower spawn as difficulty increases
