@@ -8,12 +8,8 @@ Player::Player(int Xposition, int Yposition){
     health = 100;
     shield = 0;
     velocity.set(0, 0);
-    this->shipSprite.load("ShipModels/secondShip.png");
-    
-      this->shieldSprite.load("CompressedImages/ForceShield.png");
-      
-
-
+    this->shipSprite.load("ShipModels/secondShip.png"); //spawning ship
+    this->shieldSprite.load("CompressedImages/ForceShield.png"); //shield image
     this->shipOrientation = 0;
     accelerationAmount = 5.0; // Adjust the value as needed
     score = 0;
@@ -39,7 +35,7 @@ void Player::draw() {
            
             this->shipSprite.draw(-20, -20, 45, 45);
              if(shieldon){
-                this->shieldSprite.draw(-20,-20,45,45);
+                this->shieldSprite.draw(-20,-20,45,45); //Draw the shield
             }
             
             ofPopMatrix();
@@ -109,7 +105,7 @@ void Player::addPressedKey(int key) {
         maxSpeed=10;
     }
 
-    if(tolower(key)==113 && shield==100){
+    if(tolower(key)==113 && shield==100){ // If shield is charged and letter Q is pressed shield activates
         shieldon=true;
         shieldActivationTime= ofGetElapsedTimeMillis(); 
       
@@ -166,6 +162,8 @@ void Player::movement(char keyPressed) {
         shipOrientation += rotationSpeed;
         }
 }
+
+    //Utility methods for skin changing logic
  void Player::changeShipAppearance(const string& imagePath) {
     shipSprite.load(imagePath); // Load the new ship image
 }

@@ -115,12 +115,12 @@ void EnemyManager::manageCollisions(Player* player) {
                 Boss->takeDamage(bullet.getDamage());
                 
                 if (Boss->isDead()) { 
-                    newBomb=true;
-                    if(bombCount==0){
+                    newBomb=true; //If boss is dead then new bomb will be selected
+                    if(bombCount==0){//If currently the player doesnt have any bomb, it will be granted one new bomb, this means bombs cant be accumulated
                         bombCount++;
                     }                                //If the boss has died from a bullet
                     player->scship=true;          //To change the bullets and ship after killing the boss
-                    player->setPlayerBullet(20);       //*******not sure if this makes the bullets do more damage(needs fix)***********
+                    player->setPlayerBullet(20);       //Set the player bullet damage x2 after killing the first boss
                     SoundManager::stopSong(whichBoss);
                     SoundManager::playSong("battle", false);
                     bossHasDied();
@@ -153,6 +153,7 @@ void EnemyManager::manageCollisions(Player* player) {
         enemy->removeMarkedBullets();
     }
 
+    //Enemies and bosses collision damage logic
     for(auto& enemy : enemyList) {
         if(player->hitBox.isColliding(*enemy->getHitBox())){
             if(player->shieldon==false){

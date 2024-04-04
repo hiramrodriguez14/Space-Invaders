@@ -31,8 +31,8 @@ void FinalBoss::update(const ofPoint& playerPos) {
         pos = possiblePositions[switchPosIndex % possiblePositions.size()];
     }
 
-    // Shoot bullets in a semi-circular motion
-    if (shotTimer % 10  == 0) { // Adjust the value for the frequency of shooting
+    // Shoot bullets in a semi-circular motion, 4 bullets with a space of 90 degrees
+    if (shotTimer % 10  == 0) { //  frequency of shooting
         shoot();
     }
 

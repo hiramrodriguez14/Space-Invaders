@@ -41,7 +41,7 @@ void NewEnemy::draw() {
 }
 
 void NewEnemy::shoot() {
-    // Create a new projectile and add it to the list of bullets
+    // New enemy with two projectiles
     Projectiles p = Projectiles(pos-7, shipOrientation + 90);
     p.setColors(ofColor::green, ofColor::purple);
     enemyBullets.push_back(p);

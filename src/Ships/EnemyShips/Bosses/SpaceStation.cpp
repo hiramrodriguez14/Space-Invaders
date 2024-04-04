@@ -46,7 +46,7 @@ void SpaceStation::draw() {
 
 void SpaceStation::shoot() {
     
-
+//Spiral only one bullet
  float angle = shootAngleOffset;
     Projectiles bullet(shootingPoint, angle);
     bullet.setSpeed(5);

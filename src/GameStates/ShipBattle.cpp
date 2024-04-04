@@ -88,7 +88,7 @@ void ShipBattle::update() {
         }
     }
         if(player->shieldon){
-    SoundManager::playSong("Shield", true);
+    SoundManager::playSong("Shield", true); //Logic for the shield sound
     SoundManager::setVolume("Shield", 1); 
    
 }if(!player->shieldon){
@@ -139,9 +139,11 @@ void ShipBattle::draw() {
         ofNoFill();
         ofDrawRectangle(ofGetWidth() - 150, 30, 50, 50);
         ofFill();
+
+        //This section of the code is the logic of what bomb to draw
         if(EnemyManager::bombCount>0){
-           particleSystem.whichBomb(); // Llama a whichBomb() para configurar el valor de bomb
-           bombValue = particleSystem.getBomb(); // Obtiene el valor actualizado de bomb
+           particleSystem.whichBomb(); 
+           bombValue = particleSystem.getBomb(); 
             if(bombValue==0){
         nanobomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-360, 52, 52);
          indicatorFont.drawString("NANO BOMB(E)", 1000, 95);
@@ -154,6 +156,8 @@ void ShipBattle::draw() {
             }
            
         }
+
+        //Lives indicator
     indicatorFont.drawString("PRESS (SHIFT) TO SPRINT", ofGetWidth()/2-90, ofGetHeight()-10);
      indicatorFont.drawString("LIVES:", 560, 80);
     if(this->player->lives>=1){
@@ -183,7 +187,7 @@ void ShipBattle::keyPressed(int key) {
     if(key == 'o')  player->health = 100;
     if(key == 'p')  playerScore += 10000; 
 
-    if(EnemyManager::bombCount>0 && key=='e'){
+    if(EnemyManager::bombCount>0 && key=='e'){ //Logic for bomb sound
         if(bombValue==0){
        SoundManager::playSong("Nano",false);
         }else if(bombValue==1){
@@ -191,13 +195,13 @@ void ShipBattle::keyPressed(int key) {
         }else if(bombValue==2){
             SoundManager::playSong("Fart",false);
         }
-       particleSystem.explode(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
-       EnemyManager::enemyList.clear();
+       particleSystem.explode(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2)); //This makes the particle explosion animation
+       EnemyManager::enemyList.clear();//Clear all enemies and grants the player 1000 score points
         this->playerScore += 1000;
        for (auto& Boss : EnemyManager::bossList){
-        Boss->takeDamage(Boss->getHealth()/4);      
+        Boss->takeDamage(Boss->getHealth()/4);    //The bomb damages the boss by 1/4 of its current health  
        }
-       EnemyManager::bombCount--;
+       EnemyManager::bombCount--;//The bomb goes away
 
 
             }
@@ -243,7 +247,7 @@ void ShipBattle::updateBullets() {
 // ====================================
 // UI and Feedback Methods Section
 // ====================================
-void ShipBattle::healthBar(int currHealth, int maxHealth) {
+void ShipBattle::healthBar(int currHealth, int maxHealth) {//Health indicator
     indicatorFont.drawString("HEALTH", 10, 30);
     ofNoFill();
     ofDrawRectangle(10, 40, maxHealth *2, 20);
@@ -253,7 +257,7 @@ void ShipBattle::healthBar(int currHealth, int maxHealth) {
     ofSetColor(ofColor::white);
 }
 
-void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {
+void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {//Killspree indicator
     indicatorFont.drawString("KILL SPREE", 10, 80);
     ofNoFill();
     ofDrawRectangle(10, 90, maxTimer, 10);
@@ -263,13 +267,13 @@ void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {
     ofSetColor(ofColor::white);
 }
 
-void ShipBattle::shieldBar(int currShield, int maxShield){//este es la barra para el escudo
+void ShipBattle::shieldBar(int currShield, int maxShield){//Shield indicator
     indicatorFont.drawString("SHIELD(Q)", 10, 120);
     ofNoFill();
-    ofDrawRectangle(10, 130, maxShield *2, 20);//crea el barra donde va a estar el escudo
+    ofDrawRectangle(10, 130, maxShield *2, 20);
     ofFill();
     ofSetColor(ofColor::blue);
-    ofDrawRectangle(10, 130, currShield *2, 20);//cambiar max shield por currShield 
+    ofDrawRectangle(10, 130, currShield *2, 20);
     ofSetColor(ofColor::white);
 }
 
