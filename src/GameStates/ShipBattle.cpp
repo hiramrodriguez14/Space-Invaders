@@ -143,24 +143,27 @@ void ShipBattle::draw() {
            particleSystem.whichBomb(); // Llama a whichBomb() para configurar el valor de bomb
            bombValue = particleSystem.getBomb(); // Obtiene el valor actualizado de bomb
             if(bombValue==0){
-        nanobomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+        nanobomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-360, 52, 52);
+         indicatorFont.drawString("NANO BOMB(E)", 1000, 95);
             }else if(bombValue==1){
-                 atomicbomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+                 atomicbomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-360, 52, 52);
+                     indicatorFont.drawString("ATOMIC BOMB(E)", 1000, 95);
             }else if(bombValue==2){
-                fartbomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-355, 52, 52);
+                fartbomb.draw(ofGetWindowWidth()/2+450, ofGetWindowHeight()/2-360, 52, 52);
+                    indicatorFont.drawString("FART BOMB(E)", 1000, 95);
             }
            
         }
-
-     indicatorFont.drawString("LIVES:", 510, 80);
+    indicatorFont.drawString("PRESS (SHIFT) TO SPRINT", ofGetWidth()/2-90, ofGetHeight()-10);
+     indicatorFont.drawString("LIVES:", 560, 80);
     if(this->player->lives>=1){
-        heart.draw(ofGetWindowWidth()/2-25, ofGetWindowHeight()/2-325, 25, 25);
+        heart.draw(ofGetWindowWidth()/2+25, ofGetWindowHeight()/2-325, 25, 25);
     }
      if(this->player->lives>=2){
-        heart.draw(ofGetWindowWidth()/2+5, ofGetWindowHeight()/2-325, 25, 25);
+        heart.draw(ofGetWindowWidth()/2+55, ofGetWindowHeight()/2-325, 25, 25);
     }
      if(this->player->lives==3){
-        heart.draw(ofGetWindowWidth()/2+35, ofGetWindowHeight()/2-325, 25, 25);
+        heart.draw(ofGetWindowWidth()/2+85, ofGetWindowHeight()/2-325, 25, 25);
     }
     
 }
@@ -261,7 +264,7 @@ void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {
 }
 
 void ShipBattle::shieldBar(int currShield, int maxShield){//este es la barra para el escudo
-    indicatorFont.drawString("SHIELD", 10, 120);
+    indicatorFont.drawString("SHIELD(Q)", 10, 120);
     ofNoFill();
     ofDrawRectangle(10, 130, maxShield *2, 20);//crea el barra donde va a estar el escudo
     ofFill();
