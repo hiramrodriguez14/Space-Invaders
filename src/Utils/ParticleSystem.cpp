@@ -1,8 +1,9 @@
 #include "ParticleSystem.h"
 
+//This class is the responsable for making THE EXPLOSION!!! 
 ParticleSystem::ParticleSystem() {}
 
-
+//This is the method that chose a random bomb to detonate
 void ParticleSystem::whichBomb() {
     if (EnemyManager::bombCount > 0 && EnemyManager::newBomb) {
         int randomNum = int(ofRandom(3));
@@ -40,13 +41,13 @@ void ParticleSystem::whichBomb() {
     return this->bomb;
 }
 void ParticleSystem::explode(ofVec2f position) {
-    int numberOfParticles = 300; // Customizable
+    int numberOfParticles = 300; // Number of particles
     for (int i = 0; i < numberOfParticles; i++) {
         float angle = ofRandom(TWO_PI);
-        float speed = ofRandom(5, 500); // Customize speed
+        float speed = ofRandom(5, 500); // Range of velocity of every particle, its random to make a more realistic effect
         ofVec2f vel = ofVec2f(cos(angle), sin(angle)) * speed;
 
-        particle.setup(position, vel, ofRandom(1, 3)); // Random lifespan 
+        particle.setup(position, vel, ofRandom(1, 3)); // Random lifespan of each particle
         particles.push_back(particle);
     }
 }
@@ -60,7 +61,7 @@ void ParticleSystem::update(float deltaTime) {
 }
 
 void ParticleSystem::draw() {
-    for (auto& particle : particles) {
+    for (auto& particle : particles) { //draws the particles
         particle.draw();
     }
   
