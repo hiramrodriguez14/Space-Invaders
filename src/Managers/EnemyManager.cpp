@@ -266,7 +266,7 @@ void EnemyManager::spawnEnemy(Player* player){
         if (!bossIsActive) { // Ensure no boss is currently active before spawning another
 
 
-        if (currentScore > 100000 && !finalSeen) {
+        if (currentScore > 120000 && !finalSeen) {
                 // Spawn Final Boss
                 initiateBossSpawn("La Bestia 420");
                 finalSeen = true; // Prevent multiple spawns
