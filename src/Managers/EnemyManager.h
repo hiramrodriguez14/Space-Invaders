@@ -11,7 +11,7 @@
 #include "ORT.h"
 #include "UFO.h"
 #include "SpaceStation.h"
-
+#include "FinalBoss.h"
 
 class EnemyManager {
     //==================== Utility Functions and Variables ====================
@@ -54,7 +54,7 @@ class EnemyManager {
         static bool ufoSeen;
         static bool ortSeen;
         static bool stationSeen;
-
+        static bool finalSeen;
 
     public:
         // Boss Management
